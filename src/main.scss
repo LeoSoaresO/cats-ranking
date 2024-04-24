@@ -35,6 +35,11 @@ ul {
   display: grid;
   grid-template-rows: 400px 1fr;
   grid-column-gap: 1em;
+  @media screen {
+    @media (max-width:600px) {
+        padding: 0px;
+    }
+  }  
 
   .leaders {
     background-color: var(--primary);
