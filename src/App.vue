@@ -1,12 +1,12 @@
 <template>
     <div class="container">
       <Leaders :topThreeCats="topThreeCats" :newLeader="newLeader"/>
-      <Board :allCats="allCats"/>
+      <Board :allCats="allCats" @updateCats="updateCats"/>
     </div>
   </template>
   
-<script>
-  import { ref, computed, watch } from 'vue';
+  <script>
+  import { ref, computed, watch, onMounted } from 'vue';
   import Leaders from './components/Leaders.vue';
   import Board from './components/Board.vue';
   import './main.scss'
@@ -21,12 +21,26 @@
         { name: "Scott", photo: "cat-4", points: 100 },
         { name: "Safira", photo: "cat-5", points: 100 },
       ]);
+  
       const catRank = ref([
         { r: 2, c: "#d6a21e" },
         { r: 0, c: "#d6cd1e" },
         { r: 1, c: "#bbbbbb" }
       ]);
       const newLeader = ref("");
+  
+      // Carregar gatos do localStorage ao inicializar
+      onMounted(() => {
+        const savedCats = localStorage.getItem('cats');
+        if (savedCats) {
+          cats.value = JSON.parse(savedCats);
+        }
+      });
+  
+      // Monitora mudanças nos gatos para salvar no localStorage
+      watch(cats, (newCats) => {
+        localStorage.setItem('cats', JSON.stringify(newCats));
+      }, { deep: true });
   
       const allCats = computed(() => {
         return [...cats.value].sort((a, b) => b.points - a.points);
@@ -46,7 +60,12 @@
         }
       });
   
-      return { topThreeCats, newLeader, allCats };
+      // Função para atualizar os pontos dos gatos
+      function updateCats(updatedCats) {
+        cats.value = updatedCats;
+      }
+  
+      return { topThreeCats, newLeader, allCats, updateCats };
     }
   };
   </script>

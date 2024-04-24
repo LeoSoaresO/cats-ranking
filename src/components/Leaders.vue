@@ -8,7 +8,7 @@
             <div class="podium" :class="`pod-${i + 1}`">
               <div class="ranking-lead" :style="{ backgroundColor: catRank[i].c }">{{ catRank[i].r + 1 }}</div>
               <h4>{{ cat.name }}</h4>
-              <p>{{ cat.points }} CatPoints</p>
+              <p>{{ cat.points }} Cat-Points</p>
             </div>
           </div>
         </li>
