@@ -4,7 +4,7 @@
       <ul>
         <li v-for="(cat, i) in topThreeCats" :key="cat.name">
           <div class="lead-cats">
-            <img class="lead-cats__photo" :src="`/src/assets/${cat.photo}.jpeg`" :class="{ active: cat.name === newLeader }">
+            <img class="lead-cats__photo" :src="`https://leosoareso.github.io/apis/cats/api/imgs/${cat.photo}.jpeg`" :class="{ active: cat.name === newLeader }">
             <div class="podium" :class="`pod-${i + 1}`">
               <div class="ranking-lead" :style="{ backgroundColor: catRank[i].c }">{{ catRank[i].r + 1 }}</div>
               <h4>{{ cat.name }}</h4>

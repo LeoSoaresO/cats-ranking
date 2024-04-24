@@ -2,7 +2,7 @@
     <li class="cat-item">
       <div class="cat-item__photo">
         <div class="ranking" :style="{ backgroundColor: colorOrder }">{{ rankOrder }}</div>
-        <img :src="`/src/assets/${cat.photo}.jpeg`">
+        <img :src="`https://leosoareso.github.io/apis/cats/api/imgs/${cat.photo}.jpeg`">
       </div>
       <div class="cat-item__info">
         <h4>{{ cat.name }}</h4>
